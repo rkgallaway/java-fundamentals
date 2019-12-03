@@ -2,6 +2,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
 import java.time.LocalDateTime;
+import java.util.Timer;
 
 //File name matches EXACTLY with class name
 public class Basics {
@@ -79,5 +80,11 @@ public class Basics {
             }
         }
         System.out.println("It took " + flips + " flips to flip " + headFlipsInARow + " heads in a row.");
+    }
+
+    //feature#3 lab1
+    public static void clock(){
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(now);
     }
 }
