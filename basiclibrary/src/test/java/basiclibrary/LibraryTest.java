@@ -45,5 +45,37 @@ public class LibraryTest {
         assertFalse("Duplicate cannot be present in an array length on one and returns 'false'", Library.containsDuplicates(testFalse));
         assertFalse("Duplicate cannot be present in an array length on one and returns 'false'", Library.containsDuplicates(testZero));
     }
+
+    @Test
+    public void testCalculateAverage () {
+        //test some array averages
+        //test if array length is 0 -because an int is returned, empty array avg should equal 0 as opposed to null
+        int testAverageTwoArray[] = {2, 2, 2, 2, 2, 2};
+        int testArrayNoLength[] = {};
+        assertEquals("array returns an average of 2", 2, Library.calculateAverage(testAverageTwoArray));
+        assertEquals("array with no length returns null", 0, Library.calculateAverage(testArrayNoLength));
+    }
+
+    @Test
+    public void testLowestAverage(){
+        //does it work
+        int[][] averageTester = {
+                {1, 1, 1, 1},
+                {2, 2, 2, 2},
+                {3, 3, 3, 3},
+                {4, 4, 4, 4}
+        };
+        int[] expected = new int[]{1,1,1,1};
+        int[][] averageTesterNegatives = {
+                {1, 1, 1, 1},
+                {-2, -2, -2, -2},
+                {3, 3, 3, 3},
+                {4, 4, 4, 4}
+        };
+        //what if two arrays average is the same?  it will return the first, is this a problem?
+        int[] expectedNegatives = new int[]{-2, -2, -2, -2};
+        assertArrayEquals("returns the array [1, 1, 1, 1]", expected, Library.lowestAverage(averageTester));
+        assertArrayEquals("returns the array [1, 1, 1, 1]", expectedNegatives, Library.lowestAverage(averageTesterNegatives));
+    }
 }
 
