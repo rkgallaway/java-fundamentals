@@ -3,6 +3,7 @@ import java.util.Calendar;
 import java.util.Random;
 import java.time.LocalDateTime;
 import java.util.Timer;
+import java.time.format.DateTimeFormatter;
 
 //File name matches EXACTLY with class name
 public class Basics {
@@ -85,6 +86,36 @@ public class Basics {
     //feature#3 lab1
     public static void clock(){
         LocalDateTime now = LocalDateTime.now();
-        System.out.println(now);
+
+        //save the initial second, if it changes, (re)assign time variable and render
+        int initialSecond = now.getSecond();
+
+        //system speed
+        double cycles = 0;
+
+        while(true){
+            now = LocalDateTime.now();
+            cycles++;
+            //print time if seconds change
+            if(now.getSecond() != initialSecond){
+                int currentSecond = now.getSecond();
+                initialSecond = currentSecond;
+                String time = now.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+                
+                //handle speed -Stretch Goal
+                String speed = "Hz";
+                if(cycles > 1_000_000_000){
+                    cycles /= 1_000_000_000;
+                    speed = "GHz";
+                } else if (cycles > 1_000_000){
+                    cycles /= 1_000_000;
+                    speed = "MHz";
+                } else if (cycles > 1_000){
+                    cycles /= 1_000;
+                    speed = "GHz";
+                }
+                System.out.println(time + " " + cycles + " " + speed); 
+            }
+        }
     }
 }
