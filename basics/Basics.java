@@ -1,5 +1,8 @@
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Random;
+import java.time.LocalDateTime;
+import java.util.Timer;
 
 //File name matches EXACTLY with class name
 public class Basics {
@@ -31,6 +34,12 @@ public class Basics {
         for (String name : names){
         System.out.println(name);
         }
+
+        System.out.println("------------------------------------------------------------------");
+
+        System.out.println(pluralize("cat", -1));
+        flipNHeads(4);
+        clock();
     }
 
     public static boolean isItSalmonSeason(String month){
@@ -42,5 +51,40 @@ public class Basics {
         } else {
             return false;
         }
+    }
+
+    //feature #1 lab 1
+    public static String pluralize(String word, int count){
+        //should return plural for everything but 1 and -1, including 0
+        if (count == 1 || count == -1){
+            return word;
+        } else {
+            return word + "s";
+        }
+    }
+
+    //feature #2 lab 1
+    public static void flipNHeads(int headFlipsInARow){
+        Random r = new Random();
+        int flips = 0;
+        int heads = 0;
+        while (heads < headFlipsInARow){
+            flips++;
+            double flip = r.nextDouble();
+            if (flip < .5){
+                heads = 0;
+                System.out.println("tails");
+            } else {
+                heads++;
+                System.out.println("heads");
+            }
+        }
+        System.out.println("It took " + flips + " flips to flip " + headFlipsInARow + " heads in a row.");
+    }
+
+    //feature#3 lab1
+    public static void clock(){
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(now);
     }
 }
