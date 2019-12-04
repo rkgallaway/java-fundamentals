@@ -6,16 +6,12 @@ package basiclibrary;
 import static java.lang.Math.random;
 
 public class Library {
-    public boolean someLibraryMethod() {
-//        int[] rollsArr = roll(3);
-//        System.out.println(rollsArr[0]);
-//        int tester = randomNumberOneToSix();
-//        System.out.println(tester);
+    public boolean someLibraryMethod () {
         return true;
     }
 
     //feature #1: roll dice and contain results in an array
-    public static int[] roll(int n){
+    public static int[] roll (int n) {
         int[] rolls = new int[n];
         for (int i =0; i < rolls.length; i++){
             rolls[i] = randomNumberOneToSix();
@@ -24,13 +20,13 @@ public class Library {
     }
 
     //this helper function makes testing easier
-    public static int randomNumberOneToSix(){
+    public static int randomNumberOneToSix () {
         int num  = (int) Math.ceil(6 * Math.random());
         return num;
     }
 
     //detect duplicates
-    public static boolean containsDuplicates(int[] results){
+    public static boolean containsDuplicates (int[] results) {
         for (int i = 0; i < results.length; i++) {
             int value = results[i];
             for (int j = 0; j < results.length; j++) {
@@ -39,8 +35,30 @@ public class Library {
                 }
             }
         }
-
         return false;
     }
 
+    //calculate averages
+    public static int calculateAverage (int[] intArr) {
+        if(intArr.length == 0){
+            return 0;
+        }
+        int sum = 0;
+        for (int element : intArr) {
+            sum += element;
+        }
+        sum = sum / intArr.length;
+        return sum;
+    }
+
+    //Array of Arrays
+    public static int[] lowestAverage (int[][] intArr) {
+        int[] lowestAverageArray = intArr[0];
+        for (int[] subArray : intArr) {
+            if (calculateAverage(subArray) < calculateAverage(lowestAverageArray)) {
+                lowestAverageArray = subArray;
+            }
+        }
+        return lowestAverageArray;
+    }
 }
