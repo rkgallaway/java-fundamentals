@@ -194,4 +194,14 @@ public class Library {
         //how would I test??  and confirm exact output from the println.  use hasMap for high and low?  use hashSet for unseen temps?  break them apart into smaller functions and confirm with those function returns?  call those functions in a render function?
         return true;
     }
+
+    public static String tally(ArrayList votes){
+
+        // create hashMap
+        // insert each candidate into HashMap, start with vote 1, and increment on reoccur
+        // return key with highest value
+        String results = "null";
+
+        return results;
+    }
 }
