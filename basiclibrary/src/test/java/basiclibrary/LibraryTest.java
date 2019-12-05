@@ -3,6 +3,7 @@
  */
 package basiclibrary;
 
+import org.checkerframework.dataflow.qual.TerminatesExecution;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -77,5 +78,63 @@ public class LibraryTest {
         assertArrayEquals("returns the array [1, 1, 1, 1]", expected, Library.lowestAverage(averageTester));
         assertArrayEquals("returns the array [1, 1, 1, 1]", expectedNegatives, Library.lowestAverage(averageTesterNegatives));
     }
+
+    @Test
+    public void testSomeArrayList() {
+        assertTrue("someArrayList should return 'true'", Library.someArrayList());
+    }
+
+    @Test
+    public void testSomeHashMap() {
+        assertTrue("someHashMap should return 'true'", Library.someHashMap());
+    }
+
+    @Test
+    public void testSomeHashSet() {
+        assertTrue("someHashSet should return 'true'", Library.someHashSet());
+    }
+
+    @Test
+    public void testFindMinimumValue () {
+        int[] testArrA = {7, 5, 3, 1, 7, 9, 100};
+        int[] testArrB = {1, 7, 5, 3, 10, 7, 9, 100};
+        int[] testArrC = {7, 5, 3, 10, 7, 9, 1};
+        int[] testArrD = {7, 5, 3, -2, 7, 9, 1};
+        int[] testArrE = {7, 5, 3, 0, 7, 9, 1};
+
+        assertEquals("minimum value is found as expected at middle of array", 1, Library.findMinimumValue(testArrA));
+        assertEquals("minimum value is found as expected at front of array", 1, Library.findMinimumValue(testArrB));
+        assertEquals("minimum value is found as expected at end of array", 1, Library.findMinimumValue(testArrC));
+        assertEquals("minimum value is found if that value is a negative number", -2, Library.findMinimumValue(testArrD));
+        assertEquals("minimum value is found if that value is zero", 0, Library.findMinimumValue(testArrE));
+    }
+
+    @Test
+    public void testFindMaximumValue () {
+        int[] testArrA = {7, 5, 3, 100, 7, 9, 1};
+        int[] testArrB = {100, 7, 5, 3, 10, 7, 9, 1};
+        int[] testArrC = {7, 5, 3, 10, 7, 9, 100};
+        int[] testArrD = {-7, -5, -3, -2, -7, -9, -10};
+        int[] testArrE = {-7, -5, -3, 0, -7, -9, -1};
+
+        assertEquals("minimum value is found as expected at middle of array", 100, Library.findMaximumValue(testArrA));
+        assertEquals("minimum value is found as expected at front of array", 100, Library.findMaximumValue(testArrB));
+        assertEquals("minimum value is found as expected at end of array", 100, Library.findMaximumValue(testArrC));
+        assertEquals("minimum value is found if that value is a negative number", -2, Library.findMaximumValue(testArrD));
+        assertEquals("minimum value is found if that value is zero", 0, Library.findMaximumValue(testArrE));
+    }
+
+    @Test
+    public void testAnalyzeWeatherData () {
+        int[][] weeklyMonthTemperatures = {
+                {66, 64, 58, 65, 71, 57, 60},
+                {57, 65, 65, 70, 72, 65, 51},
+                {55, 54, 60, 53, 59, 57, 61},
+                {65, 56, 55, 52, 55, 62, 57}
+        };
+
+        assertTrue("returns true when an array is plugged in (prinln other values too", Library.analyzeWeatherData(weeklyMonthTemperatures));
+    }
+
 }
 
