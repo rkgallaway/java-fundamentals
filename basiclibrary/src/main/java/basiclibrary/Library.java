@@ -25,8 +25,7 @@ public class Library {
 
     // this helper function makes testing easier
     public static int randomNumberOneToSix() {
-        int num = (int) Math.ceil(6 * Math.random());
-        return num;
+        return (int) Math.ceil(6 * Math.random());
     }
 
     // detect duplicates
@@ -73,9 +72,7 @@ public class Library {
         names.add("Ryan");
         names.add("David");
         names.add("Jon");
-        for (int i = 0; i < names.size(); i++) {
-            System.out.println(names.get(i));
-        }
+
         for (String name : names) {
             System.out.println(name);
         }
@@ -198,10 +195,30 @@ public class Library {
     public static String tally(ArrayList votes){
 
         // create hashMap
-        // insert each candidate into HashMap, start with vote 1, and increment on reoccur
-        // return key with highest value
-        String results = "null";
+        HashMap<String, Integer> tallyMap = new HashMap<>();
+        for (int i = 0; i < votes.size(); i++) {
+            String nomination = (String) votes.get(i);
+        // insert each unique nomination into HashMap, start with vote 1
+            if (!tallyMap.containsKey(nomination)) {
+                tallyMap.put(nomination, 1);
+            }
+            //add additional votes for each nomination
+            int existingVotes = tallyMap.get(nomination);
+            tallyMap.put(nomination, existingVotes + 1);
+        }
 
-        return results;
+        //result variables
+        String elected = null;
+        int count = 0;
+
+        // determine election winner
+        for (String nomination : tallyMap.keySet()) {
+            int nominationVotes = tallyMap.get(nomination);
+            if (nominationVotes > count) {
+                count = nominationVotes;
+                elected = nomination;
+            }
+        }
+        return elected;
     }
 }

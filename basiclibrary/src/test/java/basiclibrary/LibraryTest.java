@@ -5,6 +5,9 @@ package basiclibrary;
 
 import org.checkerframework.dataflow.qual.TerminatesExecution;
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class LibraryTest {
@@ -134,6 +137,25 @@ public class LibraryTest {
         };
 
         assertTrue("returns true when an array is plugged in (prinln other values too", Library.analyzeWeatherData(weeklyMonthTemperatures));
+    }
+
+    @Test
+    public void testTally () {
+        ArrayList<String> votes = new ArrayList<>();
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Shrub");
+        votes.add("Hedge");
+        votes.add("Shrub");
+        votes.add("Bush");
+        votes.add("Hedge");
+        votes.add("Bush");
+        votes.add("Hedge");
+        votes.add("Hedge");
+
+        assertEquals("happy path, works as expected win by one vote", "Bush", Library.tally(votes));
+        assertNotSame("One less vote does not win -off by one error", "Hedge", Library.tally(votes));
     }
 
 }
