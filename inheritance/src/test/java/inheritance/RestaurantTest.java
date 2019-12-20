@@ -13,7 +13,7 @@ public class RestaurantTest {
 
     @Test
     public void testRestaurants () {
-        Restaurant restaurant = new Restaurant("Lennys", 4);
+        Restaurant restaurant = new Restaurant("Lennys", false, "Seattle",4);
 
         assertEquals(
                 "Works as expected",
@@ -23,7 +23,7 @@ public class RestaurantTest {
 
     @Test
     public void testAddReview () {
-        Restaurant restaurant = new Restaurant("Lennys", 4);
+        Restaurant restaurant = new Restaurant("Lennys", false, "Seattle",4);
         assertEquals("no reviews exist until a review is added", 0, restaurant.reviews.size());
 
         Review testReviewOne = new Review("this place is good", "Ryan G.", 5);
@@ -32,15 +32,19 @@ public class RestaurantTest {
 
         restaurant.addReview(testReviewOne);
         assertEquals("can add one review", 1, restaurant.reviews.size());
-
+        System.out.println(restaurant.stars);
         restaurant.addReview(testReviewTwo);
+        System.out.println(restaurant.stars);
+
         restaurant.addReview(testReviewThree);
+        System.out.println(restaurant.stars);
+
         assertEquals("can add multiple reviews", 3, restaurant.reviews.size());
     }
 
     @Test
     public void testCalcStarRating () {
-        Restaurant restaurant = new Restaurant("Lennys", 4);
+        Restaurant restaurant = new Restaurant("Lennys", false, "Seattle",4);
         Review testReviewOne = new Review("this place is good", "Ryan G.", 5);
         Review testReviewTwo = new Review("this place is ok", "Joe", 4);
         Review testReviewThree = new Review("this place sucks", "Stinker", 3);
